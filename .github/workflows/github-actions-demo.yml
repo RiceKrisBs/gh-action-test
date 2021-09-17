@@ -9,5 +9,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: step 1
-        if:  ${{ github.head_ref != 'release' }} || ${{ github.head_ref != 'hotfix/*' }}
+        if:  ${{ github.head_ref != 'release' }} && ${{ github.head_ref != 'hotfix/*' }}
         run: echo "invalid PR!"
