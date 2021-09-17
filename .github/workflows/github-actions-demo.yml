@@ -5,12 +5,11 @@ on:
       - main
 
 jobs:
-  check_pr:
+  run:
     runs-on: ubuntu-latest
     steps:
-      - name: Check for valid head
-        if: ${{ github.head_ref != 'release' }} || ${{ github.head_ref != 'hotfix/*' }}
-        run:
-          runs-on: ubuntu-latest
-          steps:
-          - uses: superbrothers/close-pull-request@v3
+    - name: Check for valid head
+      if: ${{ github.head_ref != 'release' }} || ${{ github.head_ref != 'hotfix/*' }}
+      uses: superbrothers/close-pull-request@v3
+      with:
+        comment: To PR into main, you must use a head of release or hotfix.
