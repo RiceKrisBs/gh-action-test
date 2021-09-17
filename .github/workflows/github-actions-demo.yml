@@ -1,0 +1,15 @@
+name: Close Improper Pull Requests
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  check_pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v1
+      - name: step 1
+        if: ${{ github.head_ref != 'release' }}
+        run: echo "Invalid PR!"
