@@ -2,14 +2,14 @@ name: Close Improper Pull Requests
 on:
   pull_request_target:
     branches:
-      - main
+      - master
 
 jobs:
-  run:
+  check_valid_head:
     runs-on: ubuntu-latest
     steps:
-    - name: Check for valid head
-      if: ${{ github.head_ref != 'release' && !contains(github.head_ref, 'hotfix/') }}
-      uses: superbrothers/close-pull-request@v3
-      with:
-        comment: To PR into main, you must use a head of release or hotfix.
+      - name: Check for valid head
+        if: ${{ github.head_ref != 'release' && !contains(github.head_ref, 'hotfix/') }}
+        uses: superbrothers/close-pull-request@v3
+        with:
+          comment: To create a pull request into master, you must use a head of 'release' or 'hotfix/*'.
