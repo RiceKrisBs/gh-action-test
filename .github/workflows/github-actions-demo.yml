@@ -8,8 +8,9 @@ jobs:
   check_pr:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout repo
-        uses: actions/checkout@v1
-      - name: step 1
-        if: ${{ github.head_ref != 'release' }}
-        run: echo "Invalid PR!"
+      - name: Check for valid head
+        if: ${{ github.head_ref != 'release' }} || ${{ github.head_ref != 'hotfix/*' }}
+        run:
+          runs-on: ubuntu-latest
+          steps:
+          - uses: superbrothers/close-pull-request@v3
