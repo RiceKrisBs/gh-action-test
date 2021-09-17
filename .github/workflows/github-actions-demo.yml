@@ -5,7 +5,7 @@ on:
       - main
 
 jobs:
-  run:
+  check_pr_head:
     runs-on: ubuntu-latest
     steps:
     - name: Check for valid head
